@@ -13,4 +13,5 @@ public class Assessment {
     private Integer qualification;
     private String user;
     private AssessmentType type;
+    private Integer currentQuestion = 0;
 }
