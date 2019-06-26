@@ -7,7 +7,7 @@ import com.assessments.domain.Question;
 
 public interface QuestionService {
 
-    Question getQuestion(Long id);
+    Question getQuestion(String id);
 
     List<Question> getQuestions();
 

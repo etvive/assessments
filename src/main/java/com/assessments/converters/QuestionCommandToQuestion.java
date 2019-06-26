@@ -3,10 +3,12 @@ package com.assessments.converters;
 import java.util.Objects;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import com.assessments.commands.QuestionCommand;
 import com.assessments.domain.Question;
 
+@Component
 public class QuestionCommandToQuestion implements Converter<QuestionCommand, Question> {
 
     @Override

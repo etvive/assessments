@@ -86,7 +86,7 @@ public class QuestionServiceImplTest {
 
     private Question getTestQuestion() {
         Question question = getInsertTestQuestion();
-        question.setId(1001L);
+        question.setId("1001");
 
         return question;
     }
@@ -98,11 +98,11 @@ public class QuestionServiceImplTest {
 
     @Test
     public void testGetQuestion() {
-        when(repository.findById(Mockito.anyLong())).thenReturn(Optional.ofNullable(getTestQuestion()));
+        when(repository.findById(Mockito.anyString())).thenReturn(Optional.ofNullable(getTestQuestion()));
 
-        Question question = service.getQuestion(1001L);
+        Question question = service.getQuestion("1001");
 
-        assertTrue(question.getId().equals(1001L));
+        assertTrue(question.getId().equals("1001"));
         assertTrue(question.getType().equals(QuestionType.SIMPLE));
     }
 
@@ -121,7 +121,7 @@ public class QuestionServiceImplTest {
         Question question = service.setQuestion(getInsertTestQuestionCommand());
 
         assertTrue(Objects.nonNull(question));
-        assertTrue(question.getId().equals(1001L));
+        assertTrue(question.getId().equals("1001"));
     }
 
 }
