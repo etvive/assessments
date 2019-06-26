@@ -16,6 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.assessments.commands.QuestionCommand;
 import com.assessments.domain.Answer;
 import com.assessments.domain.Question;
 import com.assessments.domain.QuestionType;
@@ -35,6 +36,29 @@ public class QuestionServiceImplTest {
         question.setQuestion("It is mandatory that the product increment be released to production at the end of each Sprint.");
         question.setType(QuestionType.SIMPLE);
         question.setPoints(1);
+        question.setMessage("The product increment should be usable and releasable at the end of every Sprint, but it does not have to be released.");
+
+        List<Answer> listAnswer = new ArrayList<>();
+        Answer answer1 = new Answer();
+        answer1.setId(10001L);
+        answer1.setCorrect(false);
+        answer1.setValue("True");
+        listAnswer.add(answer1);
+
+        Answer answer2 = new Answer();
+        answer2.setId(10002L);
+        answer2.setCorrect(true);
+        answer2.setValue("False");
+        listAnswer.add(answer2);
+
+        question.setAnswers(listAnswer);
+        return question;
+    }
+
+    private QuestionCommand getInsertTestQuestionCommand() {
+        QuestionCommand question = new QuestionCommand();
+        question.setQuestion("It is mandatory that the product increment be released to production at the end of each Sprint.");
+        question.setType(QuestionType.SIMPLE);
         question.setMessage("The product increment should be usable and releasable at the end of every Sprint, but it does not have to be released.");
 
         List<Answer> listAnswer = new ArrayList<>();
@@ -94,7 +118,7 @@ public class QuestionServiceImplTest {
     @Test
     public void testSetQuestion(){
         when(repository.save(Mockito.any())).thenReturn(getTestQuestion());
-        Question question = service.setQuestion(getInsertTestQuestion());
+        Question question = service.setQuestion(getInsertTestQuestionCommand());
 
         assertTrue(Objects.nonNull(question));
         assertTrue(question.getId().equals(1001L));

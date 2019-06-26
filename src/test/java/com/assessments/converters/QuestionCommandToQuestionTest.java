@@ -1,4 +1,4 @@
-package converters;
+package com.assessments.converters;
 
 import static org.junit.Assert.assertTrue;
 
