@@ -2,12 +2,20 @@ package com.assessments.domain;
 
 import java.util.List;
 
+import javax.persistence.Id;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.Data;
 
 @Data
+//@Entity
+//@Table(name = "question")
+@Document(collection = "questions")
 public class Question {
 
-    private String id;
+    @Id
+    private Long id;
     private String question;
     private List<Answer> answers;
     private QuestionType type;

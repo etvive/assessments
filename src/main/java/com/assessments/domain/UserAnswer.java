@@ -3,9 +3,13 @@ package com.assessments.domain;
 import lombok.Data;
 
 @Data
+//@Entity
+//@Table(name = "user_answer")
 public class UserAnswer {
 
-    private String id;
+    //    @Id
+    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long     id;
     // Relation between userAnswer and answer, maybe we can use BBDD relations
     private String answerId;
     // True if the user mark this option

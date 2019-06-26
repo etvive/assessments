@@ -3,9 +3,13 @@ package com.assessments.domain;
 import lombok.Data;
 
 @Data
+//@Entity
+//@Table(name = "answer")
 public class Answer {
 
-    private String id;
+    //    @Id
+    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     // The text associate to the answer
     private String answer;
     // true if the answer is the correct option
