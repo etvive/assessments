@@ -2,6 +2,7 @@ package com.assessments.services;
 
 import java.util.List;
 
+import com.assessments.commands.QuestionCommand;
 import com.assessments.domain.Question;
 
 public interface QuestionService {
@@ -10,5 +11,5 @@ public interface QuestionService {
 
     List<Question> getQuestions();
 
-    Question setQuestion(Question q);
+    Question setQuestion(QuestionCommand q);
 }
