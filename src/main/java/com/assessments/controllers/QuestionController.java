@@ -18,6 +18,7 @@ import com.assessments.domain.Question;
 import com.assessments.services.QuestionService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -30,31 +31,34 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    //TODO change the result to redirect to a url and add the model in the Model object
-
+    @ApiOperation(value = "Get all the question in the DB",response = List.class)
     @GetMapping("/all")
     public ResponseEntity<List<Question>> getAllQuestions(){
         List<Question> questions = questionService.getQuestions();
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Return a 200 OK status value")
     @GetMapping("/health")
     public ResponseEntity<Void> getHealth(){
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get the question by id",response = Question.class)
     @GetMapping("/{id}")
     public ResponseEntity<Question> getQuestion(@PathVariable(value = "id") String id){
         Question question = questionService.getQuestion(id);
         return new ResponseEntity<>(question, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get a number of random questions",response = List.class)
     @GetMapping("/random/{number}")
     public ResponseEntity<List<Question>> getRandomQuestions(@PathVariable(value = "number") int number){
         List<Question> questions = questionService.getRandomQuestions(number);
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Insert a question in the DB",response = Question.class)
     @PostMapping(path={"", "/"}, consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Question> questionPost(@RequestBody QuestionCommand questionCommand) {
         Question question = questionService.setQuestion(questionCommand);
