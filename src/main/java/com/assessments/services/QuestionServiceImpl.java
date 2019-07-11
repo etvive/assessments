@@ -30,6 +30,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<Question> getRandomQuestions(int number) {
+        return questionRepository.searchRandomQuestion(number);
+    }
+
+    @Override
     public Question setQuestion(QuestionCommand q) {
         Question question = questionCommandToQuestion.convert(q);
         return questionRepository.save(question);

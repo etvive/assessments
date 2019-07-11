@@ -11,5 +11,7 @@ public interface QuestionService {
 
     List<Question> getQuestions();
 
+    List<Question> getRandomQuestions(int number);
+
     Question setQuestion(QuestionCommand q);
 }

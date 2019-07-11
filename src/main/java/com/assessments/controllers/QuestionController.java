@@ -17,6 +17,12 @@ import com.assessments.commands.QuestionCommand;
 import com.assessments.domain.Question;
 import com.assessments.services.QuestionService;
 
+import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
+@Api(value="contact", description="Manage the contacts")
 @RestController
 @RequestMapping(value = "/question")
 public class QuestionController {
@@ -41,6 +47,12 @@ public class QuestionController {
     public ResponseEntity<Question> getQuestion(@PathVariable(value = "id") String id){
         Question question = questionService.getQuestion(id);
         return new ResponseEntity<>(question, HttpStatus.OK);
+    }
+
+    @GetMapping("/random/{number}")
+    public ResponseEntity<List<Question>> getRandomQuestions(@PathVariable(value = "number") int number){
+        List<Question> questions = questionService.getRandomQuestions(number);
+        return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
     @PostMapping(path={"", "/"}, consumes=MediaType.APPLICATION_JSON_VALUE)
