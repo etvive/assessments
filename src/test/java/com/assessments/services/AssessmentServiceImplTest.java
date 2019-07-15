@@ -61,6 +61,17 @@ public class AssessmentServiceImplTest {
         assessment.setQuestions(getTestQuestions());
         return assessment;
     }
+    
+    private Assessment getSaveTestAssessment() {
+        Assessment assessment = new Assessment();
+        assessment.setId(1L);
+        assessment.setMaxTime(60);
+        assessment.setNumberQuestions(2);
+        assessment.setType(AssessmentType.SM);
+        assessment.setUser("@etvive");
+        assessment.setQuestions(getTestQuestions());
+        return assessment;
+    }
 
     private List<Question> getTestQuestions() {
         List<Question> questions = new ArrayList<>();
@@ -113,5 +124,14 @@ public class AssessmentServiceImplTest {
         assertTrue(assessments.size() == 1);
         assertTrue(assessments.get(0).getUser().equals("@etvive"));
     }
+    
+    @Test
+    public void testSaveAssessment() {
+        Assessment initialAssessment = getSaveTestAssessment();
+        initialAssessment.setMaxTime(initialAssessment.getMaxTime()+10);
+        when(repository.save(Mockito.any())).thenReturn(initialAssessment);
+        Assessment assessment = service.saveAssessment(initialAssessment);
 
+        assertTrue(getSaveTestAssessment().getMaxTime() < assessment.getMaxTime());
+    }
 }

@@ -45,8 +45,7 @@ public class AssessmentServiceImpl implements AssessmentService {
 
     @Override
     public Assessment saveAssessment(Assessment assessment) {
-        // TODO Auto-generated method stub
-        return null;
+        return assessmentRepository.save(assessment);
     }
 
 }
