@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.assessments.commands.QuestionCommand;
+import com.assessments.converters.QuestionCommandToQuestion;
 import com.assessments.domain.Answer;
 import com.assessments.domain.Question;
 import com.assessments.domain.QuestionType;
@@ -30,6 +31,9 @@ public class QuestionServiceImplTest {
 
     @Mock
     private QuestionRepository repository;
+    
+    @Mock
+    private QuestionCommandToQuestion converter;
 
     private Question getInsertTestQuestion() {
         Question question = new Question();
