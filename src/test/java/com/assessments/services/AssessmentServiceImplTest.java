@@ -17,9 +17,11 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.assessments.commands.AssessmentCommand;
 import com.assessments.converters.AssessmentCommandToAssessment;
+import com.assessments.converters.QuestionToQuestionRelational;
 import com.assessments.domain.Assessment;
 import com.assessments.domain.AssessmentType;
 import com.assessments.domain.Question;
+import com.assessments.domain.QuestionRelational;
 import com.assessments.repositories.AssessmentRepository;
 
 @ActiveProfiles("test")
@@ -33,6 +35,9 @@ public class AssessmentServiceImplTest {
 
     @Mock
     AssessmentCommandToAssessment converter;
+    
+    @Mock
+    QuestionToQuestionRelational converterMongoRelational;
 
     @Mock
     QuestionService questionService;
@@ -58,7 +63,8 @@ public class AssessmentServiceImplTest {
         assessment.setNumberQuestions(2);
         assessment.setType(AssessmentType.SM);
         assessment.setUser("@etvive");
-        assessment.setQuestions(getTestQuestions());
+        //assessment.setQuestions(getTestQuestions());
+        assessment.setQuestions(getTestRelationalQuestions());
         return assessment;
     }
     
@@ -69,7 +75,8 @@ public class AssessmentServiceImplTest {
         assessment.setNumberQuestions(2);
         assessment.setType(AssessmentType.SM);
         assessment.setUser("@etvive");
-        assessment.setQuestions(getTestQuestions());
+        //assessment.setQuestions(getTestQuestions());
+        assessment.setQuestions(getTestRelationalQuestions());
         return assessment;
     }
 
@@ -86,8 +93,26 @@ public class AssessmentServiceImplTest {
 
         return questions;
     }
+    
+    private List<QuestionRelational> getTestRelationalQuestions() {
+        List<QuestionRelational> questions = new ArrayList<>();
+        QuestionRelational question = new QuestionRelational();
+        question.setId("1001");
+        questions.add(question);
+        QuestionRelational question2 = new QuestionRelational();
+        question2.setId("1002");
+        questions.add(question2);
 
-    @Before
+        return questions;
+    }
+    
+    private QuestionRelational getRelationalQuestion() {
+        QuestionRelational question = new QuestionRelational();
+        question.setId("1001");
+        return question;
+    }
+    
+        @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
     }
@@ -97,6 +122,7 @@ public class AssessmentServiceImplTest {
         when(questionService.getRandomQuestions(Mockito.anyInt())).thenReturn(getTestQuestions());
         when(repository.save(Mockito.any())).thenReturn(getTestAssessment());
         when(converter.convert(Mockito.any())).thenReturn(getTestAssessment());
+        when(converterMongoRelational.convert(Mockito.any())).thenReturn(getRelationalQuestion());
 
         Assessment assessment = service.createAssessment(getAssessmentCommand());
 

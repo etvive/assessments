@@ -21,6 +21,6 @@ public class Question {
     private QuestionType type;
     private Integer points;
     private String message;
-    private List<UserAnswer> userAnswers;
+    //private List<UserAnswer> userAnswers;
 
 }
