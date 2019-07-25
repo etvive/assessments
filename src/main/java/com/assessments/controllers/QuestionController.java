@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-@Api(value="contact", description="Manage the contacts")
+@Api(value="question", description="Manage the questions")
 @RestController
 @RequestMapping(value = "/question")
 public class QuestionController {
