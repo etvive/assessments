@@ -30,7 +30,7 @@ public class Assessment {
     private List<QuestionRelational> questions;
     private Integer numberQuestions;
     private Integer qualification;
-    private String user;
+    private String userAssessment;
     private AssessmentType type;
     private Integer currentQuestion = 0;
 }

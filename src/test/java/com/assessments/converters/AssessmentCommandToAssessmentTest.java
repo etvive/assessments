@@ -32,7 +32,7 @@ public class AssessmentCommandToAssessmentTest {
         Assessment assessment = converter.convert(assessmentCommand);
         assertTrue(Objects.equals(assessment.getMaxTime(), assessmentCommand.getMaxTime()) && 
                 Objects.equals(assessment.getNumberQuestions(), assessmentCommand.getNumberQuestions()) &&
-                Objects.equals(assessment.getUser(), assessmentCommand.getUser()) &&
+                Objects.equals(assessment.getUserAssessment(), assessmentCommand.getUser()) &&
                 Objects.equals(assessment.getType(), assessmentCommand.getType()));
 
         assertTrue(Objects.equals(assessment.getCurrentQuestion(), 0));

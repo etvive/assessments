@@ -55,7 +55,7 @@ public class AssessmentServiceImpl implements AssessmentService {
 
     @Override
     public List<Assessment> getAssessments(String user) {
-        return assessmentRepository.findByUser(user);
+        return assessmentRepository.findByUserAssessment(user);
     }
 
     @Override

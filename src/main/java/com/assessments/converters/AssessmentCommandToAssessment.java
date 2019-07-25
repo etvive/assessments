@@ -21,7 +21,7 @@ public class AssessmentCommandToAssessment implements Converter<AssessmentComman
         assessment.setMaxTime(source.getMaxTime());
         assessment.setNumberQuestions(source.getNumberQuestions());
         assessment.setType(source.getType());
-        assessment.setUser(source.getUser());
+        assessment.setUserAssessment(source.getUser());
 
         return assessment;
     }

@@ -62,7 +62,7 @@ public class AssessmentServiceImplTest {
         assessment.setMaxTime(60);
         assessment.setNumberQuestions(2);
         assessment.setType(AssessmentType.SM);
-        assessment.setUser("@etvive");
+        assessment.setUserAssessment("@etvive");
         //assessment.setQuestions(getTestQuestions());
         assessment.setQuestions(getTestRelationalQuestions());
         return assessment;
@@ -74,7 +74,7 @@ public class AssessmentServiceImplTest {
         assessment.setMaxTime(60);
         assessment.setNumberQuestions(2);
         assessment.setType(AssessmentType.SM);
-        assessment.setUser("@etvive");
+        assessment.setUserAssessment("@etvive");
         //assessment.setQuestions(getTestQuestions());
         assessment.setQuestions(getTestRelationalQuestions());
         return assessment;
@@ -133,7 +133,7 @@ public class AssessmentServiceImplTest {
     public void testGetAssessment() {
         when(repository.findById(Mockito.anyLong())).thenReturn(Optional.ofNullable(getTestAssessment()));
         Assessment assessment = service.getAssessment(1L);
-        assertTrue(assessment.getUser().equals("@etvive"));
+        assertTrue(assessment.getUserAssessment().equals("@etvive"));
     }
 
     @Test
@@ -145,10 +145,10 @@ public class AssessmentServiceImplTest {
 
     @Test
     public void testGetAssessmentsByUser() {
-        when(repository.findByUser(Mockito.anyString())).thenReturn(getAssessmentsList());
+        when(repository.findByUserAssessment(Mockito.anyString())).thenReturn(getAssessmentsList());
         List<Assessment> assessments = service.getAssessments("@etvive");
         assertTrue(assessments.size() == 1);
-        assertTrue(assessments.get(0).getUser().equals("@etvive"));
+        assertTrue(assessments.get(0).getUserAssessment().equals("@etvive"));
     }
     
     @Test

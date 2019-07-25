@@ -8,5 +8,5 @@ import com.assessments.domain.Assessment;
 
 public interface AssessmentRepository extends CrudRepository<Assessment, Long> {
 
-    List<Assessment> findByUser(String user);
+    List<Assessment> findByUserAssessment(String userAssessment);
 }
