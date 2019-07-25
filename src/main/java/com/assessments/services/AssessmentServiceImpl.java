@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.assessments.commands.AssessmentCommand;
 import com.assessments.converters.AssessmentCommandToAssessment;
@@ -13,6 +14,7 @@ import com.assessments.domain.Question;
 import com.assessments.domain.QuestionRelational;
 import com.assessments.repositories.AssessmentRepository;
 
+@Service
 public class AssessmentServiceImpl implements AssessmentService {
 
     @Autowired
