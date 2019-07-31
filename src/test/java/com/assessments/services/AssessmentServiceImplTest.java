@@ -25,6 +25,7 @@ import com.assessments.domain.AssessmentType;
 import com.assessments.domain.Question;
 import com.assessments.domain.QuestionRelational;
 import com.assessments.repositories.AssessmentRepository;
+import com.assessments.repositories.QuestionRelationalRepository;
 
 @ActiveProfiles("test")
 public class AssessmentServiceImplTest {
@@ -43,6 +44,9 @@ public class AssessmentServiceImplTest {
 
     @Mock
     QuestionService questionService;
+    
+    @Mock
+    QuestionRelationalRepository questionRelationalRepository;
 
     private AssessmentCommand getAssessmentCommand() {
         AssessmentCommand assessmentCommand = new AssessmentCommand();
@@ -125,6 +129,7 @@ public class AssessmentServiceImplTest {
         when(repository.save(Mockito.any())).thenReturn(getTestAssessment());
         when(converter.convert(Mockito.any())).thenReturn(getTestAssessment());
         when(converterMongoRelational.convert(Mockito.any())).thenReturn(getRelationalQuestion());
+        when(questionRelationalRepository.save(Mockito.any())).thenReturn(getRelationalQuestion());
 
         Assessment assessment = service.createAssessment(getAssessmentCommand());
 
