@@ -7,9 +7,11 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.aggregation.TypedAggregation;
+import org.springframework.stereotype.Repository;
 
 import com.assessments.domain.Question;
 
+@Repository
 public class QuestionRepositoryCustomImpl implements QuestionRepositoryCustom {
 
     private final MongoTemplate mongoTemplate;

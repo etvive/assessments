@@ -1,11 +1,16 @@
 package com.assessments.domain;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,8 +31,8 @@ public class Assessment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer maxTime;
-    @OneToMany(mappedBy = "assessment")
-    private List<QuestionRelational> questions;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "assessment")
+    private Set<QuestionRelational> questions = new HashSet<>();
     private Integer numberQuestions;
     private Integer qualification;
     private String userAssessment;

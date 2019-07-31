@@ -1,7 +1,8 @@
 package com.assessments.services;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,16 @@ import com.assessments.domain.Assessment;
 import com.assessments.domain.Question;
 import com.assessments.domain.QuestionRelational;
 import com.assessments.repositories.AssessmentRepository;
+import com.assessments.repositories.QuestionRelationalRepository;
 
 @Service
 public class AssessmentServiceImpl implements AssessmentService {
 
     @Autowired
     AssessmentRepository assessmentRepository;
+    
+    @Autowired
+    QuestionRelationalRepository questionRelationalRepository;
 
     @Autowired
     QuestionService questionService;
@@ -32,16 +37,16 @@ public class AssessmentServiceImpl implements AssessmentService {
     @Override
     public Assessment createAssessment(AssessmentCommand assessmentCommand) {
         Assessment assessment = converter.convert(assessmentCommand);
-        //assessment.setQuestions(questionService.getRandomQuestions(assessment.getNumberQuestions()));
+        assessmentRepository.save(assessment);
         List<Question> mongoQuestionList = questionService.getRandomQuestions(assessment.getNumberQuestions());
         // we have to obtain the questions from mongo and convert in relational questions
-        //mongoQuestionList.stream().forEach(e -> converterMongoRelational.convert(e));
-        List<QuestionRelational> listQuestionRelational = new ArrayList<>();
         for (Question question : mongoQuestionList) {
-            listQuestionRelational.add(converterMongoRelational.convert(question));
+        	QuestionRelational questionRelational = converterMongoRelational.convert(question);
+        	questionRelational.setAssessment(assessment);
+            questionRelationalRepository.save(questionRelational);
         }
-        assessment.setQuestions(listQuestionRelational);
-        assessmentRepository.save(assessment);
+        
+        //TODO add the questions to the assessment
         return assessment;
     }
 

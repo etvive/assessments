@@ -8,7 +8,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -84,8 +86,8 @@ public class AssessmentControllerTest {
     	return assessment;
     }
 
-    private List<QuestionRelational> getRelationalQuestions() {
-		List<QuestionRelational> questions = new ArrayList<>();
+    private Set<QuestionRelational> getRelationalQuestions() {
+		Set<QuestionRelational> questions = new HashSet<>();
     	
 		QuestionRelational question = new QuestionRelational();
         question.setAssessment(new Assessment());

@@ -6,9 +6,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.assessments.domain.Assessment;
+import com.assessments.domain.QuestionRelational;
 
 @Repository
-public interface AssessmentRepository extends CrudRepository<Assessment, Long> {
+public interface QuestionRelationalRepository extends CrudRepository<QuestionRelational, Long> {
 
-    List<Assessment> findByUserAssessment(String userAssessment);
+	List<QuestionRelational> findByAssessment(Assessment assessment);
 }

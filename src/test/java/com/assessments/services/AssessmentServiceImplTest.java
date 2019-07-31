@@ -4,8 +4,10 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -94,8 +96,8 @@ public class AssessmentServiceImplTest {
         return questions;
     }
     
-    private List<QuestionRelational> getTestRelationalQuestions() {
-        List<QuestionRelational> questions = new ArrayList<>();
+    private Set<QuestionRelational> getTestRelationalQuestions() {
+        Set<QuestionRelational> questions = new HashSet<>();
         QuestionRelational question = new QuestionRelational();
         question.setId("1001");
         questions.add(question);
